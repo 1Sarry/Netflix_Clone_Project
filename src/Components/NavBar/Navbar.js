@@ -7,17 +7,19 @@ const Navbar = () => {
   const [show, handleShow] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY >= 100) {
         handleShow(true);
-      } else handleShow(false);
+      } else {
+        handleShow(false);
+      }
     });
     return () => {
       window.removeEventListener("scroll", null);
     };
-  }, []);
+  }, [window.scrollY]);
 
   return (
-    <div className={`navbar ${show && "nav_black"}`}>
+    <div className={show ? "navbar nav_black" : "navbar"}>
       <img className="nav_logo" src={netflixLogo} alt="Netflix Logo" />
       <img className="nav_avatar" src={avatar} alt="Avatar Logo" />
     </div>
